@@ -15,7 +15,7 @@ Python code to reproduce our works on Deep Learning-based Offloading for Mobile-
 
 ## Cite this work
 
-1. Liang Huang, Xu Feng, Anqi Feng, Yupin Huang, and Li Ping Qian, "Distributed Deep Learning-based Oﬄoading for Mobile Edge Computing Networks," in Mobile Networks and Applications,2018, DOI:10.1007/s11036-018-1177-x.
+1. Liang Huang, Xu Feng, Anqi Feng, Yupin Huang, and Li Ping Qian, "[Distributed Deep Learning-based Oﬄoading for Mobile Edge Computing Networks](https://doi.org/10.1007/s11036-018-1177-x)," in Mobile Networks and Applications, 2018, DOI:10.1007/s11036-018-1177-x.
 
 ## Required packages
 
