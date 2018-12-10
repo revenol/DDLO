@@ -7,7 +7,7 @@ Created on Fri Dec  8 09:17:27 2017
 import numpy as np
 import pandas as pd
 from scipy import optimize
-import time  
+import time
 import scipy.io as sio  
 class MUMTMC(object):
     def __init__(self,N,M,rseed):
@@ -27,10 +27,10 @@ class MUMTMC(object):
         self.n_actions = (N*M+N*2)*2
         self.n_features = N*M+N*2
         #fixed parameters
-        self.APP,self.fc,self.p,self.a,self.et=1900.,10.*10**9,1,1.5*10**-7,1.42*10**-7                      
+        self.APP,self.fc,self.p,self.a,self.et=1900.,10.*10**9,1,1.5*10**-7,1.42*10**-7
         self.El,self.Tl,self.CUL=3.25*10**-7,4.75*10**-7,150/8
-        #self.APP,self.fc,self.p,self.a,self.et=25.,3.7*10**9,1,1*10**-8,1.*10**-9                      
-        #self.El,self.Tl,self.CUL=1.21*10**-8,8.93*10**-9,100/8                                     
+        #self.APP,self.fc,self.p,self.a,self.et=25.,3.7*10**9,1,1*10**-8,1.*10**-9
+        #self.El,self.Tl,self.CUL=1.21*10**-8,8.93*10**-9,100/8
         #addional parameters
         self.Data['El'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%M]*8*2**20*self.El for i in range(N)], index=self.users)
         self.Data['et'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%M]*8*2**20*self.et for i in range(N)], index=self.users)
@@ -51,12 +51,12 @@ class MUMTMC(object):
 
 
     def MUSUM_h(self,ho,M):
-        
+
         self.Data.iloc[0,0:3]=ho[0:3]
         self.Data.iloc[1,0:3]=ho[3:6]
         self.Data.iloc[2,0:3]=ho[6:9]
-        
-        
+
+
         self.Data['El'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%self.M]*8*2**20*self.El for i in range(self.N)], index=self.users)
         self.Data['et'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%self.M]*8*2**20*self.et for i in range(self.N)], index=self.users)
         #self.Data['er'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DOUT1':'DOUT%d'%self.M]*8*2**20*self.er for i in range(self.N)], index=self.users)
@@ -67,7 +67,7 @@ class MUMTMC(object):
         self.Data['TL'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%self.M]*8*2**20*self.Tl for i in range(self.N)], index=self.users)
         #self.Data['Tac'] = pd.Series([(self.Data.loc['user%d'%(i+1),'DOUT1':'DOUT%d'%self.M].tolist()+self.Data.loc['user%d'%(i+1),'DIN1':'DIN%d'%self.M])*8*2**20/self.Rac for i in range(self.N)], index=self.users)
         self.Data['Tc'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%self.M]*self.APP*8*2**20/self.fc for i in range(self.N)], index=self.users)
-        
+
         self.XC.iloc[0,0:3]=M[:3]
         self.XC.iloc[1,0:3]=M[3:6]
         self.XC.iloc[2,0:3]=M[6:9]
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     #print(h)
     dataout = sio.loadmat('MUMT_data_3x3(new)')['dataout']
     gain = sio.loadmat('MUMT_data_3x3(new)')['gain_min']
-    
+
     h1=dataout[2,:]
 
     m=[1, 1, 1, 0, 0, 0, 1, 1, 1]
@@ -118,4 +118,3 @@ if __name__ == "__main__":
     #print(env.XC)
     #print(env.XC)
     #print(env.Data.iloc[0,0])
-    
