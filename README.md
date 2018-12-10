@@ -3,7 +3,7 @@
 
 Python code to reproduce our works on Deep Learning-based Offloading for Mobile-Edge Computing Networks [1], where multiple parallel Deep Neural Networks (DNNs) are used to efficiently generate near-optimal binary offloading decisions. This project includes:
 
-- [memory.py](memory.py): the DNN structure for the WPMEC, inclduing training structure and test structure
+- [memory.py](memory.py): the DNN structure for the DDLO, inclduing training structure and test structure
 
 - [data](./data): all data are stored in this subdirectory, includes:
 
