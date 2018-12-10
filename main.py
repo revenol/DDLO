@@ -12,7 +12,7 @@
 #  -----------------------------------------------------------------
 #  |   optimal offloading decision  |    gain_mode     |
 #  -----------------------------------------------------------------
-# version 1.0 -- January 2018. Written by Liang Huang (lianghuang AT zjut.edu.cn)
+# version 1.0 -- January 2018. Written by Liang Huang and Xu Feng (lianghuang AT zjut.edu.cn,xfeng_zjut AT 163.com)
 #  #################################################################
 
 import scipy.io as sio                     # import scipy.io for .mat file I/
@@ -93,15 +93,15 @@ if __name__ == "__main__":
         else:
             # test
             i_idx = i - N + num_test + split_idx
-        h1=task_size[i_idx,:]
+        t1 = task_size[i_idx,:]
         #pretreatment，for better train
-        h=h1*10-200
+        t = t1*10-200
         #produce offloading decision
-        m_list = mem.decode(h)
+        m_list = mem.decode(t)
         m_li.append(m_list)
         r_list = []
         for m in m_list:
-            r_list.append(env.underlying_computing(h,m))
+            r_list.append(env.underlying_computing(t1,m))
         # memorize the largest reward
         if i>=512:
         # record the index of largest reward
@@ -115,7 +115,7 @@ if __name__ == "__main__":
             if i==511:
                 print('-------------------------------------------------')
                 print('----------------start to learn-------------------')
-        mem.encode(h, m_list[np.argmin(r_list)])
+        mem.encode(t, m_list[np.argmin(r_list)])
 
     total_time=time.time()-start_time
     print('time_cost:%s'%total_time)
@@ -123,5 +123,5 @@ if __name__ == "__main__":
     print("The number of net: ", net_num)
     mem.plot_cost()
     #cost of DNN
-    plot_gain(gain_his_ratio,name='None')
+    plot_gain(gain_his_ratio,name=None)
     #draw the ratio of the predicted value to the optimal value
