@@ -1,7 +1,7 @@
 #  #################################################################
-#  This file calculate the underlying results.
+#  This file compute the system utility Q, provided with the size of all tasks and offloading decision
 #
-# version 1.0 -- January 2018. Written by Liang Huang and Xu Feng(lianghuang AT zjut.edu.cn,xfeng_zjut AT 163.com)
+# version 1.0 -- January 2018. Written by Xu Feng (xfeng_zjut AT 163.com)
 #  #################################################################
 import numpy as np
 import pandas as pd
@@ -41,7 +41,7 @@ class MUMT(object):
             self.XC.loc['user%d'%(i+1),['cu','cd']]=[100/(8*self.N),100/(8*self.N)]
 
 
-    def underlying_computing(self,task_size,M):
+    def compute_Q(self,task_size,M):
         #Provide task_size and offloading decision, and compute the result.
         self.Data.iloc[0,0:3]=task_size[0:3]
         self.Data.iloc[1,0:3]=task_size[3:6]
@@ -69,4 +69,3 @@ class MUMT(object):
             SUM+=sum1+self.p*max(temp1,temp2)
             #Integrate energy consumption and time delay
         return SUM
-
