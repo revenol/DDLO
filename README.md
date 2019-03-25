@@ -11,7 +11,7 @@ Python code to reproduce our works on Deep Learning-based Offloading for Mobile-
 
 - [main.py](main.py): run this file, inclduing setting system parameters
 
-- [MEC_env.py](MEC_env.py): compute system utility Q, provided with the size of all tasks and offloading decision
+- [MUMT.py](MUMT.py): compute system utility Q, provided with the size of all tasks and offloading decision
 
 ## Cite this work
 
