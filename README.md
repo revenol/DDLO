@@ -28,3 +28,7 @@ Python code to reproduce our works on Deep Learning-based Offloading for Mobile-
 ## How the code works
 
 run the file, [main.py](main.py)
+
+## Contacts
+
+If you have any questions related to the codes, please feel free to contact *Liang Huang* (lianghuang AT zjut.edu.cn)
