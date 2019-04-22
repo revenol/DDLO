@@ -32,3 +32,8 @@ run the file, [main.py](main.py)
 ## Contacts
 
 If you have any questions related to the codes, please feel free to contact *Liang Huang* (lianghuang AT zjut.edu.cn)
+
+## Related works
+
+For much cleaner and well-commented source codes, please refer to our recent proposed [DROO](https://github.com/revenol/DROO) structure:
+1. Liang Huang, Suzhi Bi, and Ying-jun Angela Zhang, **Deep Reinforcement Learning for Online Computation Offloading in Wireless Powered Mobile-Edge Computing Networks**, on [arxiv:1808.01977](https://arxiv.org/abs/1808.01977).

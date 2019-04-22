@@ -20,6 +20,7 @@ class MUMT(object):
         self.Dataout=pd.DataFrame(np.random.randint(0,1,size=(N,M)),index=self.users,columns=self.DOUT)
         self.Data = pd.concat([self.Datain, self.Dataout], axis=1,join_axes=[self.Datain.index])
         #fixed parameters
+        # self.APP denotes the number of CPU cycles per bit required to complete the task
         self.APP,self.fc,self.p,self.a,self.et=1900.,10.*10**9,1,1.5*10**-7,1.42*10**-7
         self.El,self.Tl,self.CUL,self.CDL=3.25*10**-7,4.75*10**-7,100/8,100/8
         #addional parameters
