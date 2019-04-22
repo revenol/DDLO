@@ -21,7 +21,7 @@ class MUMT(object):
         self.Data = pd.concat([self.Datain, self.Dataout], axis=1,join_axes=[self.Datain.index])
         #fixed parameters
         self.APP,self.fc,self.p,self.a,self.et=1900.,10.*10**9,1,1.5*10**-7,1.42*10**-7
-        self.El,self.Tl,self.CUL=3.25*10**-7,4.75*10**-7,150/8
+        self.El,self.Tl,self.CUL,self.CDL=3.25*10**-7,4.75*10**-7,100/8,100/8
         #addional parameters
         self.Data['El'] = pd.Series([self.Data.loc[['user%d'%(i+1)],'DIN1':'DIN%d'%M]*8*2**20*self.El for i in range(N)], index=self.users)
         #the local energy consumption
@@ -38,7 +38,7 @@ class MUMT(object):
         self.C=pd.DataFrame(np.random.rand(N,2),index=self.users,columns=['cu','cd'])
         self.XC = pd.concat([self.X, self.C], axis=1,join_axes=[self.Datain.index])
         for i in range(self.N):
-            self.XC.loc['user%d'%(i+1),['cu','cd']]=[100/(8*self.N),100/(8*self.N)]
+            self.XC.loc['user%d'%(i+1),['cu','cd']]=[self.CUL/self.N,self.CDL/self.N]
 
 
     def compute_Q(self,task_size,M):
