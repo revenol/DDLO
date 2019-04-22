@@ -1,7 +1,8 @@
 #  #################################################################
 #  This file contains memory operation including encoding and decoding operations.
 #
-# version 1.0 -- January 2018. Written by Liang Huang and Xu Feng(lianghuang AT zjut.edu.cn)
+# version 1.0 -- January 2018. Written by Liang Huang (lianghuang AT zjut.edu.cn)
+# and Xu Feng (xfeng_zjut AT 163.com)
 #  #################################################################
 
 from __future__ import print_function
@@ -16,9 +17,9 @@ class MemoryDNN:
         net,
         net_num,
         learning_rate = 0.01,
-        training_interval=10, 
-        batch_size=100, 
-        memory_size=1000,
+        training_interval=10,
+        batch_size=128,
+        memory_size=1024,
         output_graph=False
     ):
         # net: [n_input, n_hidden_1st, n_hidded_2ed, n_output]
@@ -37,8 +38,8 @@ class MemoryDNN:
         self.loss=[]
         self.train_op=[]
         self.cost_his=[[] for i in range(self.net_num)]
-        
-        # reset graph 
+
+        # reset graph
         tf.reset_default_graph()
 
         # initialize zero memory [h, m]
@@ -47,7 +48,7 @@ class MemoryDNN:
         self._build_net()
 
         self.sess = tf.Session()
-        
+
         # for tensorboard
         if output_graph:
             # $ tensorboard --logdir=logs
@@ -83,13 +84,13 @@ class MemoryDNN:
         for i in range(self.net_num):
             with tf.variable_scope('memory%d_net'%i):
                 w_initializer, b_initializer = \
-                    tf.random_normal_initializer(0., 1/self.net[0]), tf.constant_initializer(0)  # config of layers                
+                    tf.random_normal_initializer(0., 1/self.net[0]), tf.constant_initializer(0)  # config of layers
                 self.m_pred.append(build_layers(self.h, ['memory%d_net_params'%i, tf.GraphKeys.GLOBAL_VARIABLES], self.net, w_initializer, b_initializer))
             with tf.variable_scope('loss%d'%i):
                 self.loss.append(tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels = self.m, logits = self.m_pred[i])))
             with tf.variable_scope('train%d'%i):
                 self.train_op.append(tf.train.AdamOptimizer(self.lr, 0.09).minimize(self.loss[i]))
-          
+
     def remember(self, h, m):
         # replace the old memory with new memory
         idx = self.memory_counter % self.memory_size
@@ -120,42 +121,26 @@ class MemoryDNN:
             batch_memory.append(self.memory[sample_index[j], :])
             h_train.append(batch_memory[j][:, 0: self.net[0]])
             m_train.append(batch_memory[j][:, self.net[0]:])
-            _, cost = self.sess.run([self.train_op[j], self.loss[j]], 
+            _, cost = self.sess.run([self.train_op[j], self.loss[j]],
                                          feed_dict={self.h: h_train[j], self.m: m_train[j]})
-            assert(cost >0)   
+            assert(cost >0)
             self.cost_his[j].append(cost)
-        
+
     def decode(self, h):
         # to have batch dimension when feed into tf placeholder
         m_list = []
         h = h[np.newaxis, :]
         for k in range(self.net_num):
-            m_pred = self.sess.run(self.m_pred[k], feed_dict={self.h: h})            
+            m_pred = self.sess.run(self.m_pred[k], feed_dict={self.h: h})
             m_list.append(1*(m_pred[0]>0))
 
         return m_list
-    
+
     def plot_cost(self):
         import matplotlib.pyplot as plt
         colors ="bgrcmykw"
         for p in range(self.net_num):
-            plt.plot(np.arange(len(self.cost_his[p])), self.cost_his[p],colors[np.random.randint(0,8)])       
+            plt.plot(np.arange(len(self.cost_his[p])), self.cost_his[p],colors[np.random.randint(0,8)])
         plt.ylabel('Cost of MemoryDNN')
         plt.xlabel('training steps')
         plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
