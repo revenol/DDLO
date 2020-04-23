@@ -36,4 +36,4 @@ If you have any questions related to the codes, please feel free to contact *Lia
 ## Related works
 
 For deep reinforcement learning-based offloading for a simple MEC structure, please refer to our recent [DROO](https://github.com/revenol/DROO) project with much cleaner and well-commented source codes:
-1. Liang Huang, Suzhi Bi, and Ying-jun Angela Zhang, **Deep Reinforcement Learning for Online Computation Offloading in Wireless Powered Mobile-Edge Computing Networks**, on [arxiv:1808.01977](https://arxiv.org/abs/1808.01977).
+1. 1. L. Huang, S. Bi, and Y. J. Zhang, “[Deep reinforcement learning for online computation offloading in wireless powered mobile-edge computing networks](https://ieeexplore.ieee.org/document/8771176),” IEEE Trans. Mobile Compt., DOI:10.1109/TMC.2019.2928811, Jul. 2019.
