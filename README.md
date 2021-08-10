@@ -19,7 +19,8 @@ Python code to reproduce our works on Deep Learning-based Offloading for Mobile-
 
 ## Required packages
 
-- Tensorflow
+- Tensorflow 1.x. 
+  - If you want to run DDLO on Tensorflow 2 or PyTorh, please find a clue from the [memoryTF2.py](https://github.com/revenol/DROO/blob/master/memoryTF2.py) or [memoryPyTorch.py](https://github.com/revenol/DROO/blob/master/memoryPyTorch.py) file in the [DROO](https://github.com/revenol/DROO) project
 
 - numpy
 
@@ -37,4 +38,4 @@ If you have any questions related to the codes, please feel free to contact *Lia
 
 For deep reinforcement learning-based offloading for a simple MEC structure, please refer to our recent [DROO](https://github.com/revenol/DROO) project with much cleaner and well-commented source codes:
 
-2. L. Huang, S. Bi, and Y. J. Zhang, “[Deep reinforcement learning for online computation offloading in wireless powered mobile-edge computing networks](https://ieeexplore.ieee.org/document/8771176),” IEEE Trans. Mobile Compt., DOI:10.1109/TMC.2019.2928811, Jul. 2019.
+2. L. Huang, S. Bi, and Y. J. Zhang, “[Deep reinforcement learning for online computation offloading in wireless powered mobile-edge computing networks](https://ieeexplore.ieee.org/document/8771176),” IEEE Trans. Mobile Compt., vol. 19, no. 11, pp. 2581-2593, November 2020.
